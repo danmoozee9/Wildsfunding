@@ -87,6 +87,10 @@
   .acct h2{font-size:17px;margin-bottom:6px}
   .acct .num{font-weight:800;font-size:18px;margin-bottom:14px}
 
+  .howto-t{text-align:left;font-weight:800;font-size:14px;margin:22px 0 8px}
+  .howto{text-align:left;margin:0;padding:16px 16px 16px 34px;background:var(--soft);border-radius:6px;font-size:14px;color:var(--sub)}
+  .howto li{padding:2px 0}
+  .howto b{color:var(--text)}
   .backers{margin-top:24px}
   .backers .list{display:flex;flex-wrap:wrap;gap:6px}
   .backers .list span{background:var(--soft);border-radius:4px;padding:4px 10px;font-size:14px}
@@ -187,6 +191,12 @@
         <h2>펀딩 계좌</h2>
         <div class="num" id="acct"></div>
         <button class="btn" id="copy">계좌번호 복사하기</button>
+        <div class="howto-t">후원 방법</div>
+        <ol class="howto">
+          <li><b>계좌번호 복사하기</b> 버튼을 눌러요.</li>
+          <li>원하는 리워드 금액만큼 이체해요.</li>
+          <li>입금자명은 <b>본인 닉네임</b>으로 해주세요. 후원자 명단에 박제됩니다.</li>
+        </ol>
       </section>
 
       <section class="backers">
