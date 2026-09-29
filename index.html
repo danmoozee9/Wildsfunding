@@ -94,6 +94,11 @@
   .backers{margin-top:24px}
   .backers .list{display:flex;flex-wrap:wrap;gap:6px}
   .backers .list span{background:var(--soft);border-radius:4px;padding:4px 10px;font-size:14px}
+  .vvip{border:1px solid #f3c9bd;background:var(--accent-soft);border-radius:8px;padding:14px 16px;margin-bottom:14px}
+  .vvip .vt{font-weight:800;font-size:15px;margin-bottom:8px}
+  .vvip .vt span{color:var(--sub);font-weight:600;font-size:13px}
+  .vvip .list span{background:#fff;border:1px solid #f3c9bd;font-weight:700}
+  .vvip .vnote{margin-top:10px;font-size:13px;color:var(--accent);font-weight:700}
   .backers .empty{color:var(--sub);font-size:14px}
 
   footer{border-top:1px solid var(--line);margin-top:80px;padding:24px 16px;text-align:center;color:var(--sub);font-size:13px}
@@ -201,6 +206,11 @@
 
       <section class="backers">
         <h2>후원자 명단</h2>
+        <div class="vvip" id="vvipBox">
+          <div class="vt">👑 VVIP 명단 <span id="vcnt"></span></div>
+          <div class="list" id="vvip"></div>
+          <div class="vnote" id="vnote"></div>
+        </div>
         <div class="list" id="backers"></div>
       </section>
     </aside>
@@ -217,7 +227,8 @@
 const CONFIG = {
   goal: 100000,                    // 목표 금액
   raised: 150000,                      // 현재 모인 금액 (null이면 "집계중" 표시)
-  backers: ["벌레스틱박이", "어제 시작한 늒네", "애아빠", "비둘기 1호", "인간 실격자", "국제홍보담당자", "회복약 디스펜서"],                    // 후원자 이름들, 예: ["철수", "영희"]
+  backers: ["벌레스틱박이", "어제 시작한 늒네", "애아빠", "비둘기 1호", "인간 실격자", "국제홍보담당자", "회복약 디스펜서"],
+  vvip: ["애아빠", "회복약 디스펜서", "벌레스틱박이", "비둘기 1호"],  // VVIP(3만원) 후원자                    // 후원자 이름들, 예: ["철수", "영희"]
   account: "카카오뱅크 7942-37-44817",
   coverImage: "cover.png",               // 대표 이미지 (선택): 같은 폴더에 cover.jpg 올리고 "cover.jpg"
   tiers: [
@@ -257,8 +268,17 @@ $("tiers").innerHTML = CONFIG.tiers.map(t => `
     <p>${t.desc}</p>
   </div>`).join("");
 
+const norm = x => x.replace(/\s/g, "");
+const isV = b => (CONFIG.vvip || []).some(v => norm(v) === norm(b));
+if ((CONFIG.vvip || []).length) {
+  $("vcnt").textContent = CONFIG.vvip.length + "명";
+  $("vvip").innerHTML = CONFIG.vvip.map(v => `<span>👑 ${v}</span>`).join("");
+  $("vnote").textContent = CONFIG.vvip.length > 3
+    ? `⚔️ VVIP ${CONFIG.vvip.length}명 돌파 — 격투대회 개최 확정 (본인 주무기 제외). 서로 죽여라.`
+    : "";
+} else { $("vvipBox").style.display = "none"; }
 $("backers").innerHTML = CONFIG.backers.length
-  ? CONFIG.backers.map(b => `<span>${b}</span>`).join("")
+  ? CONFIG.backers.map(b => `<span>${isV(b) ? "👑 " : ""}${b}</span>`).join("")
   : `<div class="empty">아직 아무도 없습니다. 첫 번째 공범이 되어주세요.</div>`;
 
 $("acct").textContent = CONFIG.account;
