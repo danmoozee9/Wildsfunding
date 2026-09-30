@@ -186,7 +186,7 @@
         <h2>자주 묻는 질문</h2>
         <div class="item"><b>본인 동의는 받았나요?</b><p>알빠노?</p></div>
         <div class="item"><b>목표액 넘으면 어떻게 되나요?</b><p>추가 DLC 및 이모티콘 제공 + 다음 타겟을 위한 마중물로 재장전됩니다.</p></div>
-        <div class="item"><b>VVIP가 4명이 넘어가면 어떻게 하나요?</b><p>격투대회(본인 주무기 제외)로 상위 3명을 선발합니다. 이제부터 서로 죽여라.</p></div>
+        <div class="item"><b>VVIP가 4명이 넘어가면 어떻게 하나요?</b><p>엠훈의 퀘스트가 VVIP로만 풀방일 경우 격투대회(본인 주무기 제외)를 진행합니다. 상위 3명에게 퀘스트 동행 자격이 주어집니다. 이제부터 서로 죽여라.</p></div>
         <div class="item"><b>펀딩 후 잠수타면요?</b><p>모두가 그의 주소를 알고 있습니다.</p></div>
         <div class="item"><b>환불되나요?</b><p>되겠냐?</p></div>
       </section>
@@ -292,7 +292,7 @@ if (A.length) {
   $("assigned").innerHTML = A.map(a => `<div class="row"><b>${a.tags.includes("VVIP") ? "👑 " : ""}${a.name}</b>
     <span class="tags">${a.tags.map(t => `<span class="tag${t==="VVIP"?" v":""}">${t}</span>`).join("")}</span></div>`).join("");
   $("vnote").textContent = vv.length > 3
-    ? `⚔️ VVIP ${vv.length}명 — 격투대회 개최 확정 (본인 주무기 제외). 서로 죽여라.` : "";
+    ? `⚔️ VVIP ${vv.length}명 — 엠훈의 퀘스트가 VVIP로만 풀방일 경우 격투대회(본인 주무기 제외)를 진행하며, 상위 3명에게 퀘스트 동행 자격이 주어집니다. 서로 죽여라.` : "";
 } else { $("vvipBox").style.display = "none"; }
 $("backers").innerHTML = CONFIG.backers.length
   ? CONFIG.backers.map(b => `<span>${isV(b) ? "👑 " : ""}${b}</span>`).join("")
